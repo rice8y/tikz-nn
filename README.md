@@ -14,9 +14,9 @@
 \fcnn[hidden layers]{input}{hidden}{output}
 ```
 
-**hidden layers**: 隠れ層の層数 (option, default: 3)
-**input**: 入力層のノード数 (required)
-**hidden**: 隠れ層のノード数 (required)
+**hidden layers**: 隠れ層の層数 (option, default: 3)  
+**input**: 入力層のノード数 (required)  
+**hidden**: 隠れ層のノード数 (required)  
 **output**: 出力層のノード数 (required)
 
 > [!TIP]
