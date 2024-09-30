@@ -26,7 +26,7 @@
 
 #### 例
 
-```latex:sample-fcnn.tex
+```latex
 \documentclass{ltjsarticle}
 \usepackage{float}
 \usepackage{tikz-nn}
