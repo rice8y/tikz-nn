@@ -1,0 +1,97 @@
+% tikz-nn.sty - Neural Network drawing package
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tikz-nn}
+
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\tikzset{
+  doublearrow/.style={
+    <->,
+    arrows = {Latex[length=3mm]-Latex[length=3mm]},
+    dashed,
+    >=Latex
+  },
+  arrow/.style={
+    ->,
+    arrows = {-Latex[length=3mm]},
+    >=Latex
+  }
+}
+
+\newcommand{\fcnn}{\@ifstar{\fcnn@star}{\fcnn@nostar}}
+\newcommand{\fcnn@base}[5]{
+  \begin{center}
+    \begin{tikzpicture}
+      %% define
+      \pgfmathsetmacro{\r}{0.5}
+      \pgfmathsetmacro{\margin}{-0.5}
+      \pgfmathsetmacro{\middleLayers}{#1}
+      \pgfmathsetmacro{\inputNodes}{#2}
+      \pgfmathsetmacro{\middleNodes}{#3}
+      \pgfmathsetmacro{\outputNodes}{#4}
+      \pgfmathsetmacro{\inputTop}{3/4*(\inputNodes-1)}
+      \pgfmathsetmacro{\middleTop}{3/4*(\middleNodes-1)}
+      \pgfmathsetmacro{\outputTop}{3/4*(\outputNodes-1)}
+
+      %% draw nodes
+      % input layer
+      \foreach \i in {1, ..., \inputNodes} {
+        \draw (0, \inputTop-1.5*\i-1.5) circle [radius=\r];
+      }
+
+      % middle layers
+      \foreach \i in {1, ..., \middleLayers} {
+        \foreach \j in {1, ..., \middleNodes} {
+          \draw (3*\i, \middleTop-1.5*\j-1.5) circle [radius=\r];
+        }
+      }
+
+      % output layer
+      \foreach \i in {1, ..., \outputNodes} {
+        \draw (3*\middleLayers+3, \outputTop-1.5*\i-1.5) circle [radius=\r];
+      }
+
+      %% draw lines
+      % input to middle
+      \foreach \i in {1, ..., \inputNodes} {
+        \foreach \j in {1, ..., \middleNodes} {
+          \draw (0.5, \inputTop-1.5*\i-1.5) -- (2.5, \middleTop-1.5*\j-1.5);
+        }
+      }
+
+      % middle to middle
+      \if1\middleLayers
+      \else
+        \foreach \i in {2, ..., \middleLayers} {
+          \foreach \j in {1, ..., \middleNodes} {
+            \foreach \k in {1, ..., \middleNodes} {
+              \draw (3*\i-2.5, \middleTop-1.5*\j-1.5) -- (3*\i-0.5, \middleTop-1.5*\k-1.5);
+            }
+          }
+        }
+      \fi
+
+      % middle to output
+      \foreach \i in {1, ..., \middleNodes} {
+        \foreach \j in {1, ..., \outputNodes} {
+          \draw (3*\middleLayers+0.5, \middleTop-1.5*\i-1.5) -- (3*\middleLayers+2.5, \outputTop-1.5*\j-1.5);
+        }
+      }
+
+      %% labels
+      \ifx0#5
+        \node at (0, \inputTop+\margin) {Input Layer};
+        \if1\middleLayers
+          \node at (3*\middleLayers/2+1.5, \middleTop+\margin) {Hidden Layer (\middleLayers \, dim)};
+        \else
+          \node at (3*\middleLayers/2+1.5, \middleTop+\margin) {Hidden Layers (\middleLayers \, dim)};
+        \fi
+        \node at (3*\middleLayers+3, \outputTop+\margin) {Output Layer};
+      \fi
+    \end{tikzpicture}
+  \end{center}
+}
+
+\newcommand{\fcnn@star}[4][3]{\fcnn@base{#1}{#2}{#3}{#4}{1}}
+\newcommand{\fcnn@nostar}[4][3]{\fcnn@base{#1}{#2}{#3}{#4}{0}}
