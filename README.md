@@ -26,11 +26,22 @@
 
 #### 例
 
-```latex
+```latex:sample-fcnn.tex
 \documentclass{ltjsarticle}
+\usepackage{float}
 \usepackage{tikz-nn}
+\pagestyle{empty}
 
 \begin{document}
-\fcnn{3}{6}{4}
+\begin{figure}[H]
+  \fcnn{3}{6}{4}
+  \caption{ラベル表示Ver.}
+\end{figure}
+\begin{figure}[H]
+  \fcnn*[4]{3}{2}{4}
+  \caption{ラベル非表示Ver.}
+\end{figure}
 \end{document}
 ```
+
+![sample](sample-fcnn.png)
