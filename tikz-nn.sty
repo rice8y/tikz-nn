@@ -19,6 +19,9 @@
   }
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% \fcnn              %%
+%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\fcnn}{\@ifstar{\fcnn@star}{\fcnn@nostar}}
 \newcommand{\fcnn@base}[5]{
   \begin{center}
@@ -95,3 +98,108 @@
 
 \newcommand{\fcnn@star}[4][3]{\fcnn@base{#1}{#2}{#3}{#4}{1}}
 \newcommand{\fcnn@nostar}[4][3]{\fcnn@base{#1}{#2}{#3}{#4}{0}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% \ae                %%
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Note: Overwrites \ae
+\renewcommand{\ae}{\@ifstar{\ae@star}{\ae@nostar}}
+\newcommand{\ae@base}[4]{
+  \begin{center}
+    \begin{tikzpicture}
+      %% define
+      \pgfmathsetmacro{\r}{0.5}
+      \pgfmathsetmacro{\margin}{0.5}
+      \def\flag{#1}
+      \pgfmathsetmacro{\inputNodes}{#2}
+      \pgfmathsetmacro{\middleNodes}{#3}
+      \pgfmathsetmacro{\outputNodes}{#2}
+      \pgfmathtruncatemacro{\diff}{\inputNodes-\middleNodes}
+      \pgfmathtruncatemacro{\middleLayers}{2*\diff-1}
+      \pgfmathsetmacro{\inputTop}{3/4*(\inputNodes-1)}
+      \pgfmathsetmacro{\middleTop}{3/4*(\middleNodes-1)}
+      \pgfmathsetmacro{\outputTop}{3/4*(\outputNodes-1)}
+      \def\short{short}
+      \def\full{full}
+
+      %% draw ae
+      \ifx\flag\short
+        % draw nodes
+        \foreach \i in {1, ..., \middleNodes} {
+          \pgfmathsetmacro{\h}{(3*\middleNodes-1)/4}
+          \draw (0, \h-0.5-1.5*\i) circle [radius=\r]; 
+        }
+        \foreach \i in {1, ..., \inputNodes} {
+          \pgfmathsetmacro{\h}{(3*\inputNodes-1)/4}
+          \draw (3, \h-0.5-1.5*\i) circle [radius=\r]; 
+          \draw (-3, \h-0.5-1.5*\i) circle [radius=\r]; 
+        }
+
+        % draw lines
+        \pgfmathsetmacro{\ch}{(3*\middleNodes-1)/4}
+        \pgfmathsetmacro{\nh}{(3*\inputNodes-1)/4}
+        \foreach \i in {1, ..., \middleNodes} {
+          \foreach \j in {1, ..., \inputNodes} {
+            \draw (\r, \ch-0.5-1.5*\i) -- (\r+2, \nh-0.5-1.5*\j);
+            \draw (-\r, \ch-0.5-1.5*\i) -- (-\r-2, \nh-0.5-1.5*\j);
+          }
+        }
+      \else
+        \ifx\flag\full
+          \ifnum\diff>1
+            % draw nodes
+            \foreach \i in {0, ..., \diff} {
+              \pgfmathsetmacro{\nodes}{\i+\middleNodes}
+              \pgfmathsetmacro{\h}{(3*\nodes-1)/4}
+              \foreach \j in {1, ..., \nodes} {
+                \ifnum\i>0
+                  \draw (3*\i, \h-0.5-1.5*\j) circle [radius=\r];
+                  \draw (-3*\i, \h-0.5-1.5*\j) circle [radius=\r];
+                \else
+                  \draw (0, \h-0.5-1.5*\j) circle [radius=\r];
+                \fi
+              }
+            }
+
+            % draw lines
+            \pgfmathsetmacro{\iter}{\diff-1}
+            \foreach \i in {0, ..., \iter} {
+              \pgfmathsetmacro{\current}{\i+\middleNodes}
+              \pgfmathsetmacro{\ch}{(3*\current-1)/4}
+              \pgfmathsetmacro{\next}{\current+1}
+              \pgfmathsetmacro{\nh}{(3*\next-1)/4}
+              \foreach \j in {1, ..., \current} {
+                \foreach \k in {1, ..., \next} {
+                  \draw (3*\i+\r, \ch-0.5-1.5*\j) -- (3*\i+\r+2, \nh-0.5-1.5*\k);
+                  \draw (-3*\i-\r, \ch-0.5-1.5*\j) -- (-3*\i-\r-2, \nh-0.5-1.5*\k);
+                }
+              }
+            }
+          \fi
+        \fi
+
+        %% labels
+        \ifx\flag\short
+          \pgfmathsetmacro{\diff}{1}
+        \fi
+        \ifnum#4=0
+          \node at (-3*\diff, \inputTop+\margin) {Input Layer};
+          \ifx\flag\short
+            \node at (0, \middleTop+\margin) {Hidden Layer};
+          \else
+            \if1\middleLayers
+              \node at (0, \middleTop+\margin) {Hidden Layer (\middleLayers \, dim)};
+            \else
+              \node at (0, \middleTop+\margin) {Hidden Layers (\middleLayers \, dim)};
+            \fi
+          \fi
+          \node at (0, \middleTop+\margin-0.5) {Bottleneck};
+          \node at (3*\diff, \outputTop+\margin) {Output Layer};
+        \fi
+      \fi
+    \end{tikzpicture}
+  \end{center}
+}
+
+\newcommand{\ae@star}[3][short]{\ae@base{#1}{#2}{#3}{1}}
+\newcommand{\ae@nostar}[3][short]{\ae@base{#1}{#2}{#3}{0}}
