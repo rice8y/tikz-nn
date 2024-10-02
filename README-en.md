@@ -22,7 +22,7 @@ Load the `tikz-nn.sty` package in the preamble:
 **output**: Number of output nodes (required)
 
 > [!TIP]
-> Use \fcnn to display labels and \fcnn* to hide labels.
+> Use `\fcnn` to display labels and `\fcnn*` to hide labels.
 
 At present, there is no scaling option, so please adjust as needed. Additionally, the number of nodes is the same across all hidden layers.
 
@@ -55,11 +55,11 @@ At present, there is no scaling option, so please adjust as needed. Additionally
 **hidden**: Number of nodes in the hidden (latent vector) layer (required)
 
 > [!TIP]
-> Use \ae to display labels and \ae* to hide labels.
+> Use `\ae` to display labels and `\ae*` to hide labels.
 
-Like \fcnn, there is no scaling option at this time, so please adjust accordingly.
+Like `\fcnn`, there is no scaling option at this time, so please adjust accordingly.
 
-#### Example Usage of \ae
+#### Example Usage of `\ae`
 
 \documentclass{ltjsarticle}
 \usepackage{float}
