@@ -48,7 +48,45 @@
 
 ![sample](sample-fcnn.png)
 
-### 2. オートエンコーダ `\ae`
+### 2. 再帰型ニューラルネットワーク `\rnn`
+
+```latex
+\rnn[hidden layers]{input}{hidden}{output}
+```
+
+**hidden layers**: 隠れ層の層数 (option, default: 2)  
+**input**: 入力層のノード数 (required)  
+**hidden**: 隠れ層のノード数 (required)  
+**output**: 出力層のノード数 (required)
+
+> [!TIP]
+> `\rnn` でラベル表示, `\rnn*` でラベル非表示.
+
+`\fcnn` 同様, 現時点でスケーリングオプションは無い為, 必要に応じて対処してください. また, 隠れ層の各層におけるノード数は均一です.
+
+#### `\rnn` の使用例
+
+```latex
+\documentclass{ltjsarticle}
+\usepackage{float}
+\usepackage{tikz-nn}
+\pagestyle{empty}
+
+\begin{document}
+\begin{figure}[H]
+  \rnn{3}{4}{3}
+  \caption{ラベル表示 Ver.}
+\end{figure}
+\begin{figure}[H]
+  \rnn*[1]{3}{5}{2}
+  \caption{ラベル非表示 Ver.}
+\end{figure}
+\end{document}
+```
+
+![sample](./sample-rnn.png)
+
+### 3. オートエンコーダ `\ae`
 
 ```latex
 \ae[style]{input/output}{hidden}
@@ -85,6 +123,6 @@
 
 ![sample](sample-ae.png)
 
-### 3. 他のニューラルネットワーク
+### 4. 他のニューラルネットワーク
 
 作成中...

@@ -46,7 +46,45 @@ At present, there is no scaling option, so please adjust as needed. Additionally
 \end{document}
 ```
 
-### 2. Autoencoder `\ae`
+### 2. Recurrent Neural Network `\rnn`
+
+```latex
+\rnn[hidden layers]{input}{hidden}{output}
+```
+
+**hidden layers**: Number of hidden layers (optional, default: 2)  
+**input**: Number of input nodes (required)  
+**hidden**: Number of nodes in each hidden layer (required)  
+**output**: Number of output nodes (required)
+
+> [!TIP]
+> Use `\rnn` to display labels and `\rnn*` to hide labels.
+
+Like `\fcnn`, there is no scaling option at this time, so please adjust accordingly. Additionally, the number of nodes is the same across all hidden layers.
+
+#### Example Usage of `\rnn`
+
+```latex
+\documentclass{ltjsarticle}
+\usepackage{float}
+\usepackage{tikz-nn}
+\pagestyle{empty}
+
+\begin{document}
+\begin{figure}[H]
+  \rnn{3}{4}{3}
+  \caption{ラベル表示 Ver.}
+\end{figure}
+\begin{figure}[H]
+  \rnn*[1]{3}{5}{2}
+  \caption{ラベル非表示 Ver.}
+\end{figure}
+\end{document}
+```
+
+![sample](./sample-rnn.png)
+
+### 3. Autoencoder `\ae`
 
 ```latex
 \ae[style]{input/output}{hidden}
@@ -81,6 +119,6 @@ Like `\fcnn`, there is no scaling option at this time, so please adjust accordin
 \end{document}
 ```
 
-## 3. Other Neural Networks
+## 4. Other Neural Networks
 
 In progress...
