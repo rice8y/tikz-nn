@@ -28,6 +28,7 @@ At present, there is no scaling option, so please adjust as needed. Additionally
 
 #### Example Usage of `\fcnn`
 
+```latex
 \documentclass{ltjsarticle}
 \usepackage{float}
 \usepackage{tikz-nn}
@@ -43,6 +44,7 @@ At present, there is no scaling option, so please adjust as needed. Additionally
   \caption{Version without labels.}
 \end{figure}
 \end{document}
+```
 
 ### 2. Autoencoder `\ae`
 
@@ -61,6 +63,7 @@ Like `\fcnn`, there is no scaling option at this time, so please adjust accordin
 
 #### Example Usage of `\ae`
 
+```latex
 \documentclass{ltjsarticle}
 \usepackage{float}
 \usepackage{tikz-nn}
@@ -76,6 +79,7 @@ Like `\fcnn`, there is no scaling option at this time, so please adjust accordin
   \caption{Full version.}
 \end{figure}
 \end{document}
+```
 
 ## 3. Other Neural Networks
 
