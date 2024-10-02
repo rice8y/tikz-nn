@@ -1,6 +1,6 @@
 # Neural Network Drawing Package (TikZ)
 
-[ja](./README.md)
+[[ja]](./README.md)
 
 ## Usage
 
@@ -46,6 +46,8 @@ At present, there is no scaling option, so please adjust as needed. Additionally
 \end{document}
 ```
 
+![sample](./sample/fcnn/sample-fcnn.png)
+
 ### 2. Recurrent Neural Network `\rnn`
 
 ```latex
@@ -82,7 +84,7 @@ Like `\fcnn`, there is no scaling option at this time, so please adjust accordin
 \end{document}
 ```
 
-![sample](./sample-rnn.png)
+![sample](./sample/rnn/sample-rnn.png)
 
 ### 3. Autoencoder `\ae`
 
@@ -118,6 +120,8 @@ Like `\fcnn`, there is no scaling option at this time, so please adjust accordin
 \end{figure}
 \end{document}
 ```
+
+![sample](./sample/ae/sample-ae.png)
 
 ## 4. Other Neural Networks
 

@@ -1,6 +1,6 @@
 # ニューラルネットワーク描画パッケージ (Tikz)
 
-[en](./README-en.md)
+[[en]](./README-en.md)
 
 ## Usage
 
@@ -46,7 +46,7 @@
 \end{document}
 ```
 
-![sample](sample-fcnn.png)
+![sample](./sample/fcnn/sample-fcnn.png)
 
 ### 2. 再帰型ニューラルネットワーク `\rnn`
 
@@ -84,7 +84,7 @@
 \end{document}
 ```
 
-![sample](./sample-rnn.png)
+![sample](./sample/rnn/sample-rnn.png)
 
 ### 3. オートエンコーダ `\ae`
 
@@ -121,7 +121,7 @@
 \end{document}
 ```
 
-![sample](sample-ae.png)
+![sample](./sample/ae/sample-ae.png)
 
 ### 4. 他のニューラルネットワーク
 
