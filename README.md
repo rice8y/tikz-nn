@@ -1,5 +1,7 @@
 # ニューラルネットワーク描画パッケージ (Tikz)
 
+[en](./README-en.md)
+
 ## Usage
 
 プリアンブルで `tikz-nn.sty` を読み込む.
