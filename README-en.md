@@ -86,7 +86,45 @@ Like `\fcnn`, there is no scaling option at this time, so please adjust accordin
 
 ![sample](./sample/rnn/sample-rnn.png)
 
-### 3. Autoencoder `\ae`
+### 3. Long Short Term Memory `\lstm`
+
+```latex
+\lstm[hidden layers]{input}{hidden}{output}
+```
+
+**hidden layers**: Number of hidden layers (optional, default: 2)  
+**input**: Number of input nodes (required)  
+**hidden**: Number of nodes in each hidden layer (required)  
+**output**: Number of output nodes (required)
+
+> [!TIP]
+> Use `\lstm` to display labels and `\lstm*` to hide labels.
+
+Like `\fcnn`, there is no scaling option at this time, so please adjust accordingly. Additionally, the number of nodes is the same across all hidden layers.
+
+#### Example Usage of `\lstm`
+
+```latex
+\documentclass{ltjsarticle}
+\usepackage{float}
+\usepackage{tikz-nn}
+\pagestyle{empty}
+
+\begin{document}
+\begin{figure}[H]
+  \lstm{3}{4}{3}
+  \caption{ラベル表示 Ver.}
+\end{figure}
+\begin{figure}[H]
+  \lstm*[1]{3}{5}{2}
+  \caption{ラベル非表示 Ver.}
+\end{figure}
+\end{document}
+```
+
+![sample](./sample/lstm/sample-lstm.png)
+
+### 4. Autoencoder `\ae`
 
 ```latex
 \ae[style]{input/output}{hidden}
@@ -123,6 +161,6 @@ Like `\fcnn`, there is no scaling option at this time, so please adjust accordin
 
 ![sample](./sample/ae/sample-ae.png)
 
-## 4. Other Neural Networks
+## 5. Other Neural Networks
 
 In progress...

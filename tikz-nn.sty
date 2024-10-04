@@ -299,3 +299,87 @@
 
 \newcommand{\rnn@star}[4][2]{\rnn@base{#1}{#2}{#3}{#4}{1}}
 \newcommand{\rnn@nostar}[4][2]{\rnn@base{#1}{#2}{#3}{#4}{0}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% \lstm              %%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\lstm}{\@ifstar{\lstm@star}{\lstm@nostar}}
+\newcommand{\lstm@base}[5]{
+  \begin{center}
+    \begin{tikzpicture}
+      %% define
+      \pgfmathsetmacro{\r}{0.5}
+      \pgfmathsetmacro{\margin}{-0.5}
+      \pgfmathsetmacro{\middleLayers}{#1}
+      \pgfmathsetmacro{\inputNodes}{#2}
+      \pgfmathsetmacro{\middleNodes}{#3}
+      \pgfmathsetmacro{\outputNodes}{#4}
+      \pgfmathsetmacro{\inputTop}{3/4*(\inputNodes-1)}
+      \pgfmathsetmacro{\middleTop}{3/4*(\middleNodes-1)}
+      \pgfmathsetmacro{\outputTop}{3/4*(\outputNodes-1)}
+
+      %% draw nodes
+      % input layer
+      \foreach \i in {1, ..., \inputNodes} {
+        \draw (0, \inputTop-1.5*\i-1.5) circle [radius=\r];
+      }
+
+      % middle layers
+      \foreach \i in {1, ..., \middleLayers} {
+        \foreach \j in {1, ..., \middleNodes} {
+          \draw (3*\i, \middleTop-1.5*\j-1.5) circle [radius=\r];
+          % draw strings
+          \node at (3*\i, \middleTop-1.5*\j-1.5) {\tiny{LSTM}};
+          % draw arrows
+          \draw (3*\i, \middleTop-1.5*\j-1) pic[black, -latex]{carc=-10:190:0.25};
+        }
+      }
+
+      % output layer
+      \foreach \i in {1, ..., \outputNodes} {
+        \draw (3*\middleLayers+3, \outputTop-1.5*\i-1.5) circle [radius=\r];
+      }
+
+      %% draw lines
+      % input to middle
+      \foreach \i in {1, ..., \inputNodes} {
+        \foreach \j in {1, ..., \middleNodes} {
+          \draw (0.5, \inputTop-1.5*\i-1.5) -- (2.5, \middleTop-1.5*\j-1.5);
+        }
+      }
+
+      % middle to middle
+      \if1\middleLayers
+      \else
+        \foreach \i in {2, ..., \middleLayers} {
+          \foreach \j in {1, ..., \middleNodes} {
+            \foreach \k in {1, ..., \middleNodes} {
+              \draw (3*\i-2.5, \middleTop-1.5*\j-1.5) -- (3*\i-0.5, \middleTop-1.5*\k-1.5);
+            }
+          }
+        }
+      \fi
+
+      % middle to output
+      \foreach \i in {1, ..., \middleNodes} {
+        \foreach \j in {1, ..., \outputNodes} {
+          \draw (3*\middleLayers+0.5, \middleTop-1.5*\i-1.5) -- (3*\middleLayers+2.5, \outputTop-1.5*\j-1.5);
+        }
+      }
+
+      %% labels
+      \ifx0#5
+        \node at (0, \inputTop+\margin) {Input Layer};
+        \if1\middleLayers
+          \node at (3*\middleLayers/2+1.5, \middleTop+\margin) {Hidden Layer};
+        \else
+          \node at (3*\middleLayers/2+1.5, \middleTop+\margin) {Hidden Layers (\middleLayers \, dim)};
+        \fi
+        \node at (3*\middleLayers+3, \outputTop+\margin) {Output Layer};
+      \fi
+    \end{tikzpicture}
+  \end{center}
+}
+
+\newcommand{\lstm@star}[4][2]{\lstm@base{#1}{#2}{#3}{#4}{1}}
+\newcommand{\lstm@nostar}[4][2]{\lstm@base{#1}{#2}{#3}{#4}{0}}
