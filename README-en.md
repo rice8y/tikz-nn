@@ -14,7 +14,7 @@ $ cd tikz-nn
 ### 2.  Install the package using `.sh` or `.bat`
 
 > [!CAUTION]
-> The operation has not been verified with MikTeX.
+> The operation has not been verified with MiKTeX.
 
 #### 2-1. If using `.sh`
 
