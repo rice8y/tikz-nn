@@ -2,6 +2,65 @@
 
 [[en]](./README-en.md)
 
+## Installation
+
+### 1. `git clone` する
+
+```bash
+$ git clone https://github.com/rice8y/tikz-nn.git
+$ cd tikz-nn
+```
+
+### 2. `.sh` か `.bat` でパッケージをインストールする
+
+> [!CAUTION]
+> MikTeX での動作検証はしていません.
+
+#### 2-1. `.sh` の場合
+
+```bash
+$ chmod +x install.sh
+$ ./install.sh
+```
+
+<details>
+<summary>WSL2 (Ubuntu) での実行例</summary>
+
+```bash
+$ ./install.sh
+Package tikz-nn version 0.1.0 installed successfully!
+
+```
+
+</details>
+
+#### 2-3. `.bat` の場合
+
+```cmd
+> install.bat
+```
+
+<details>
+<summary>Windows (cmd) での実行例</summary>
+
+```cmd
+> install.bat
+        1 file(s) copied.
+mktexlsr: Updating C:/texlive/texmf-local/ls-R...
+mktexlsr: Updated C:/texlive/texmf-local/ls-R.
+mktexlsr: Updating C:/texlive/2022/texmf-config/ls-R...
+mktexlsr: Updated C:/texlive/2022/texmf-config/ls-R.
+mktexlsr: Updating C:/texlive/2022/texmf-var/ls-R...
+mktexlsr: Updated C:/texlive/2022/texmf-var/ls-R.
+mktexlsr: Updating C:/texlive/2022/texmf-dist/ls-R...
+mktexlsr: Updated C:/texlive/2022/texmf-dist/ls-R.
+mktexlsr: Done.
+Package tikz-nn version 0.1.0 installed successfully!
+
+```
+
+</details>
+
 ## Usage
 
 プリアンブルで `tikz-nn.sty` を読み込む.

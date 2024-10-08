@@ -1,0 +1,7 @@
+[package]
+name = "tikz-nn"
+version = "0.1.0"
+entrypoint = "src/tikz-nn.sty"
+authors = ["Eito YONEYAMA"]
+license = "MIT"
+description = "A LaTeX package for drawing neural network diagrams."

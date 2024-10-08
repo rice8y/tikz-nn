@@ -2,6 +2,65 @@
 
 [[ja]](./README.md)
 
+## Installation
+
+### 1. Clone the repository
+
+```bash
+$ git clone https://github.com/rice8y/tikz-nn.git
+$ cd tikz-nn
+```
+
+### 2.  Install the package using `.sh` or `.bat`
+
+> [!CAUTION]
+> The operation has not been verified with MikTeX.
+
+#### 2-1. If using `.sh`
+
+```bash
+$ chmod +x install.sh
+$ ./install.sh
+```
+
+<details>
+<summary>Example execution on WSL2 (Ubuntu)</summary>
+
+```bash
+$ ./install.sh
+Package tikz-nn version 0.1.0 installed successfully!
+
+```
+
+</details>
+
+#### 2-2. If using `.bat`
+
+```cmd
+> install.bat
+```
+
+<details>
+<summary>Example execution on Windows (cmd)</summary>
+
+```cmd
+> install.bat
+        1 file(s) copied.
+mktexlsr: Updating C:/texlive/texmf-local/ls-R...
+mktexlsr: Updated C:/texlive/texmf-local/ls-R.
+mktexlsr: Updating C:/texlive/2022/texmf-config/ls-R...
+mktexlsr: Updated C:/texlive/2022/texmf-config/ls-R.
+mktexlsr: Updating C:/texlive/2022/texmf-var/ls-R...
+mktexlsr: Updated C:/texlive/2022/texmf-var/ls-R.
+mktexlsr: Updating C:/texlive/2022/texmf-dist/ls-R...
+mktexlsr: Updated C:/texlive/2022/texmf-dist/ls-R.
+mktexlsr: Done.
+Package tikz-nn version 0.1.0 installed successfully!
+
+```
+
+</details>
+
 ## Usage
 
 Load the `tikz-nn.sty` package in the preamble:
