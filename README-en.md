@@ -96,11 +96,11 @@ At present, there is no scaling option, so please adjust as needed. Additionally
 \begin{document}
 \begin{figure}[H]
   \fcnn{3}{6}{4}
-  \caption{Version with labels.}
+  \caption{ラベル表示 Ver.}
 \end{figure}
 \begin{figure}[H]
   \fcnn*[4]{3}{2}{4}
-  \caption{Version without labels.}
+  \caption{ラベル非表示 Ver.}
 \end{figure}
 \end{document}
 ```
